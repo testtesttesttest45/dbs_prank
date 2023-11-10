@@ -35,6 +35,13 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        rootLayout.setOnClickListener {
+            // Post a delayed task to change the background of the root layout
+            handler.postDelayed({
+                rootLayout.setBackgroundResource(R.drawable.login)
+            }, 500)
+        }
+
         button.setOnClickListener {
             // Hide the keyboard
             val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
@@ -45,7 +52,7 @@ class MainActivity : ComponentActivity() {
 
                 editText.visibility = View.GONE
                 button.visibility = View.GONE
-
+                rootLayout.setOnTouchListener { _, _ -> true }
             }, 500) // Delay in milliseconds
         }
     }
