@@ -1,22 +1,52 @@
 package com.example.dbs_prank
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.dbs_prank.ui.theme.DBS_PrankTheme
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import android.os.Handler
+import android.view.inputmethod.InputMethodManager
 
+
+@Suppress("DEPRECATION")
 class MainActivity : ComponentActivity() {
+    private lateinit var rootLayout: ConstraintLayout
+    private lateinit var editText: EditText
+    private lateinit var button: Button
+    private val handler = Handler()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main)
+
+        rootLayout = findViewById(R.id.root_layout)
+        editText = findViewById(R.id.editText)
+        button = findViewById(R.id.button3)
+
+        // Set the initial background of the EditText to transparent
+        editText.background = null
+
+        // Change the EditText background color to white when it is tapped (receives focus)
+        editText.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                editText.setBackgroundColor(ContextCompat.getColor(this, android.R.color.white))
+            }
+        }
+
+        button.setOnClickListener {
+            // Hide the keyboard
+            val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+
+            handler.postDelayed({
+                rootLayout.setBackgroundResource(R.drawable.main)
+
+                editText.visibility = View.GONE
+                button.visibility = View.GONE
+
+            }, 500) // Delay in milliseconds
         }
     }
 }

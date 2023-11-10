@@ -3,6 +3,7 @@
     <!-- Base theme. -->
     <style name="Theme.DBS_Prank" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
+        <item name="colorControlNormal">@android:color/transparent</item>
     </style>
 
     <!-- Theme for SplashActivity. -->
