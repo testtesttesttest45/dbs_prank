@@ -18,3 +18,5 @@
 3. Save the file as PNG
 4. Open the project source codes with Android Studio and bring the PNG file into the the folder app/res/drawable
 5. Build the APK or use USB to connect to your Android phone to install the changes
+
+### DBS Prank App: Securely coded with ❤️. No malware, no data collection. Just fun!
